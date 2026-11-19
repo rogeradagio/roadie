@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- Valors per defecte de la configuració: desactivat i sense sources. -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <akeneo_connector>
+            <msi_sources>
+                <enabled>0</enabled>
+                <sources/>
+                <in_stock_sources/>
+                <apply_status_to_existing>0</apply_status_to_existing>
+            </msi_sources>
+        </akeneo_connector>
+    </default>
+</config>

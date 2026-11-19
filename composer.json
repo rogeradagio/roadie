@@ -1,0 +1,20 @@
+{
+    "name": "nacento/module-roadie",
+    "description": "Creates MSI source items for products created by Akeneo Connector.",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {"name": "roger pedrol"}
+    ],
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0",
+        "magento/framework": "*",
+        "magento/module-inventory-api": "*",
+        "magento/module-inventory-configuration-api": "*",
+        "akeneo/module-magento2-connector-community": "^105.1"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"Nacento\\Roadie\\": ""}
+    }
+}

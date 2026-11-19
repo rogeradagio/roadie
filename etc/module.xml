@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- Declaració del mòdul i dependències (s'ha de carregar després del connector d'Akeneo i de MSI). -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Nacento_Roadie">
+        <sequence>
+            <module name="Akeneo_Connector"/>
+            <module name="Magento_InventoryApi"/>
+            <module name="Magento_InventoryConfigurationApi"/>
+        </sequence>
+    </module>
+</config>

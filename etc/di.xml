@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!-- Injecció de dependències: logger propi, mida del bloc i registre de les comandes CLI. -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Nacento\Roadie\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/nacento_roadie.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Nacento\Roadie\Logger\Logger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">nacento_roadie</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="file" xsi:type="object">Nacento\Roadie\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Nacento\Roadie\Model\SourceItemAssigner">
+        <arguments>
+            <argument name="logger" xsi:type="object">Nacento\Roadie\Logger\Logger</argument>
+            <argument name="batchSize" xsi:type="number">25</argument>
+        </arguments>
+    </type>
+    <type name="Nacento\Roadie\Model\AssignSourcesToNewProducts">
+        <arguments>
+            <argument name="logger" xsi:type="object">Nacento\Roadie\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Nacento\Roadie\Observer\AssignSourcesAfterInitStock">
+        <arguments>
+            <argument name="logger" xsi:type="object">Nacento\Roadie\Logger\Logger</argument>
+            <argument name="assignSources" xsi:type="object">Nacento\Roadie\Model\AssignSourcesToNewProducts\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Nacento\Roadie\Console\Command\SetupCommand">
+        <arguments>
+            <argument name="assigner" xsi:type="object">Nacento\Roadie\Model\SourceItemAssigner\Proxy</argument>
+            <argument name="report" xsi:type="object">Nacento\Roadie\Model\Audit\SoundcheckReport\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Nacento\Roadie\Console\Command\SoundcheckCommand">
+        <arguments>
+            <argument name="report" xsi:type="object">Nacento\Roadie\Model\Audit\SoundcheckReport\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="nacento_roadie_soundcheck" xsi:type="object">Nacento\Roadie\Console\Command\SoundcheckCommand</item>
+                <item name="nacento_roadie_setup" xsi:type="object">Nacento\Roadie\Console\Command\SetupCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!-- Enganxa l'observer a l'event de final de pas del job product d'Akeneo. -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="akeneo_connector_import_step_finish_product">
+        <observer name="nacento_roadie_assign_sources" instance="Nacento\Roadie\Observer\AssignSourcesAfterInitStock"/>
+    </event>
+</config>

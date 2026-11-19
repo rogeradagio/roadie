@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- Grup de configuració MSI Sources dins la secció de l'Akeneo Connector. -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="akeneo_connector">
+            <group id="msi_sources" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>MSI Sources (Nacento Roadie)</label>
+                <comment>Creates MSI source items for products created by Akeneo Connector.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sources" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="0">
+                    <label>Sources to assign to new products</label>
+                    <source_model>Nacento\Roadie\Model\Config\Source\Sources</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="in_stock_sources" translate="label comment" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>In-stock sources</label>
+                    <comment>To sell a product with qty 0, the product or the global configuration must also allow backorders. This module does not manage that.</comment>
+                    <source_model>Nacento\Roadie\Model\Config\Source\Sources</source_model>
+                    <backend_model>Nacento\Roadie\Model\Config\Backend\InStockSources</backend_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="apply_status_to_existing" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Apply initial status to existing source items</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

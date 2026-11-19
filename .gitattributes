@@ -1,0 +1,7 @@
+# Força finals de línia LF i exclou del paquet els fitxers de desenvolupament.
+* text=auto eol=lf
+*.png binary
+
+/docs export-ignore
+/dev export-ignore
+/roadie-source-msi-auto-assign.md export-ignore
